@@ -49,3 +49,19 @@ Run:
 mvn package -Pjib
 docker run -p 8080:8080 java-oci-build-test:jib
 ```
+
+## Kaniko
+
+Kaniko can run in different environments. One is Docker:
+```
+docker run -v .:/workspace gcr.io/kaniko-project/executor:latest --dockerfile Dockerfile --destination "java-oci-build-test:kaniko" --tarPath "/workspace/kaniko-image.tar" --context dir:///workspace/
+```
+
+Further details can be found on: https://github.com/GoogleContainerTools/kaniko#running-kaniko-in-docker
+
+## Other
+
+There are more ways to build an app. For example in a Kubernetes cluster you could use [Tekton](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md)
+which can use [Kaniko](https://github.com/GoogleContainerTools/kaniko).
+
+Another technology is Buildah or Podman. Both are from RedHad.
